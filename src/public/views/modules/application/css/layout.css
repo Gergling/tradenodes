@@ -1,0 +1,112 @@
+html, body, a, a:hover {
+	color: white;
+	text-decoration: none;
+}
+
+body {
+	/*background: url(../img/background-metal-aluminium.jpg) center;*/
+	background: #444;
+	padding: 20px;
+}
+
+#nav {
+	position: relative;
+	padding: 4px;
+	margin: 0 auto;
+	width: 900px;
+	background: #2df;
+}
+#nav ul {
+	background: #444;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	height: 350px;
+}
+#nav ul li {
+	text-align: center;
+	width: 1%;
+	display: table-cell;
+	overflow: hidden;
+	padding: 0 20px;
+}
+#nav ul li .stalk {
+	height: 20px;
+	border-width: 0;
+	margin: auto;
+}
+#nav ul li.active .stalk {
+	border-width: 0 2px;
+}
+#nav ul li a {
+	color: #2df;
+	padding: 10px 0;
+	display: block;
+}
+#nav ul li.active a {
+	color: #fff;
+}
+#nav ul li a:hover {
+	text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;
+}
+
+.bracket {
+	border: solid 4px #2df;
+	height: 6px;
+}
+.bracket:first-child {
+	border-bottom-width: 0;
+}
+.bracket:last-child {
+	border-top-width: 0;
+}
+
+#content {
+	clear: both;
+	position: relative;
+	width: 800px;
+	height: 500px;
+	margin: 0 auto;
+	margin-top: -250px;
+}
+#content .content-column {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	background: #444;
+}
+#content .content-column:first-child,
+#content .content-column:last-child {
+	width: 10px;
+}
+#content .main {
+	left: 10px;
+	right: 10px;
+	padding: 10px;
+}
+#content .content-column:first-child,
+#content .content-column:last-child {
+	border: solid 4px #2df;
+}
+#content .content-column:first-child {
+	left: 0;
+	border-right-width: 0;
+}
+#content .content-column:last-child {
+	right: 0;
+	border-left-width: 0;
+}
+#content .content-column .inner {
+	position: absolute;
+	background: #444;
+	top: 4;
+	bottom: 4;
+	left: 0;
+	right: 0;
+}
+#content .content-column:first-child .inner {
+	left: 4;
+}
+#content .content-column:last-child .inner {
+	right: 4;
+}

@@ -1,0 +1,17 @@
+<div id="all">
+    <div id="nav">
+        <ul>
+            <li data-ng-repeat="item in navigation.list" data-ng-class="{active: item.active}">
+                <div class="stalk"></div>
+                <div component-bracket>
+                    <a href="#/{{item.name}}/">{{item.label}}</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div id="content">
+        <div class="content-column"></div>
+        <div class="content-column main" data-ng-include="routeTemplateUrl"></div>
+        <div class="content-column"></div>
+    </div>
+</div>

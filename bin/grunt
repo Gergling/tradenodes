@@ -1,0 +1,7 @@
+cd `dirname "$0"`
+
+if [[ ! -x ../node_modules/.bin/grunt ]]; then
+    echo "Please run 'npm install' first"
+else
+    ../node_modules/.bin/grunt ${*}
+fi

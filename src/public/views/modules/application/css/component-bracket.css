@@ -1,0 +1,59 @@
+[component-bracket] .bracket {
+	position: relative;
+	/*border: solid 4px #2df;*/
+	border: none;
+	height: 10px;
+	background-color: #2df;
+	background-repeat: repeat-x;
+	background-image: url(../img/gradient-1x10-lightblue-white.png);
+}
+[component-bracket] .bracket > .bracket-inner {
+	position: absolute;
+	top: 4px;
+	left: 4px;
+	right: 4px;
+	bottom: 4px;
+	background-color: #444;
+}
+
+[component-bracket] .bracket:first-child {
+	/*border-bottom-width: 0;*/
+}
+[component-bracket] .bracket:first-child > .bracket-inner {
+	bottom: 0;
+}
+[component-bracket] .bracket:last-child {
+	/*border-top-width: 0;*/
+	background-position: bottom;
+}
+[component-bracket] .bracket:last-child > .bracket-inner {
+	top: 0;
+}
+
+[component-bracket] .horizontal .bracket-cell {
+	display: table-cell;
+}
+[component-bracket] .horizontal .bracket {
+	border: none;
+	background-repeat: repeat-y;
+	background-image: url(../img/gradient-10x1-lightblue-white.png);
+}
+[component-bracket] .horizontal .bracket:first-child,
+[component-bracket] .horizontal .bracket:last-child {
+	width: 10px;
+}
+[component-bracket] .horizontal .bracket:first-child {
+	/*background-image: url(../img/gradient-10x1-lightblue-white.png);*/
+}
+[component-bracket] .horizontal .bracket:first-child > .bracket-inner {
+	bottom: 4px;
+	right: 0;
+}
+[component-bracket] .horizontal .bracket:last-child {
+	/*background-image: url(../img/gradient-10x1-white-lightblue.png);*/
+	background-position: right;
+}
+[component-bracket] .horizontal .bracket:last-child > .bracket-inner {
+	top: 4px;
+	left: 0;
+}

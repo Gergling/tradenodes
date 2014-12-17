@@ -50,6 +50,7 @@ module.exports = function (grunt) {
 
     paths.server = paths.module.concat(paths.other);
     paths.specs = paths.specsClient.concat(paths.specsServer);
+    grunt.file.write("src/public/views/vendor/bootstrap/css/bootstrap.css.map");
 
     grunt.initConfig({
         bower: {

@@ -1,6 +1,6 @@
 <!-- public/views/index.html -->
 <!doctype html>
-<html lang="en">
+<html lang="en" data-ng-app="application">
 <head>
  <meta charset="UTF-8">
 
@@ -17,7 +17,7 @@
   });
  %>
 
- <title>12a MEAN</title>
+ <title>Trade Nodes</title>
 
 </head>
 <body data-ng-controller="application.controller.index">

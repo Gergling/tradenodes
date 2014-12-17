@@ -1,44 +1,41 @@
-ngModules.get("application").component(function (ngm, mod) {
-    "use strict";
+angular.module("application")
 
-    ngm.config(['$routeProvider', function ($routeProvider) {
-        var getPartialUrl = function (name) {return 'modules/' + mod.getPartialUrl(name); };
+    .config(['$routeProvider', function ($routeProvider) {
+        "use strict";
 
-        var routes = {
-            '/': {redirectTo: "/mess/"},
-            '/mess/': {partial: getPartialUrl('index'), name: "mess"},
-            '/cargo-bay/': {partial: 'modules/test/partial/test.html', name: "cargo-bay"},
-            '/bridge/': {partial: 'modules/quest/partial/quests.html', name: "bridge"},
-            '/skills/': {partial: 'modules/skill/partial/skills.html', name: "skills"}
-        };
+        var Route = function (name, label, module) {
+                this.name = name;
+                this.label = label;
+                this.partial = 'modules/' + module + '/partial/index.html';
+            },
 
-        routes['/bridge/battle/'] = angular.copy(routes['/bridge/']);
-        routes['/bridge/battle/'].partial = "modules/battle/partial/battle.html";
-
-        routes['/skills/:skill*'] = routes['/skills/'];
+            containerPartial = 'modules/application/partial/container.html',
+            routes = {
+                '/': new Route("overview", "Overview", 'application'),
+                '/products/': new Route("products", "Products", 'product'),
+                '/trades/': new Route("trades", "Trades", 'trade'),
+            };
 
         angular.forEach(routes, function (obj, route) {
-            obj.templateUrl = getPartialUrl('container');
+            obj.templateUrl = containerPartial;
             $routeProvider.when(route, obj);
         });
-        $routeProvider.otherwise({templateUrl: getPartialUrl('container'), partial: getPartialUrl('404')});
-    }]);
-    ngm.controller(mod.getModuleName("controller", "index"), [
+
+        $routeProvider.otherwise({templateUrl: containerPartial, partial: 'modules/application/partial/404.html'});
+    }])
+
+    .controller("application.controller.index", [
 
         "$rootScope",
         "application.service.primary-navigation",
-        "skill.service.navigation",
 
-        function ($scope, navigation, skillNavigation) {
+        function ($scope, navigation) {
+            "use strict";
+
             $scope.navigation = navigation;
-            $scope.$on("$routeChangeStart", function (event, next, current) {
+            $scope.$on("$routeChangeStart", function (event, next) {
                 $scope.routeTemplateUrl = next.partial;
                 navigation.setActive(next.name);
-
-                if (next.name === "skills") {
-                    skillNavigation.setPath(next.params.skill);
-                }
             });
         }
     ]);
-});

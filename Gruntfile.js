@@ -315,7 +315,7 @@ module.exports = function (grunt) {
                 files: [ ]
                     .concat(paths.client)
                     .concat(paths.specsClient),
-                tasks: [ 'template:dev', 'jasmine', 'jslint:client' ]
+                tasks: [ 'template:dev', 'jslint:client' ]
             },
             server: {
                 files: [

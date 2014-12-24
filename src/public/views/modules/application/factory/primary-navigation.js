@@ -1,4 +1,6 @@
 angular.module("application").service("application.service.primary-navigation", function () {
+    "use strict";
+
     var scope = this, setNavItem = function (name, label) {
         var item = {
             label: label,
@@ -10,7 +12,7 @@ angular.module("application").service("application.service.primary-navigation", 
 
     setNavItem("overview", "Overview");
     setNavItem("products", "Products");
-    setNavItem("trades", "Trades");
+    setNavItem("nodes", "Nodes");
 
     this.setActive = function (name) {
         angular.forEach(scope.list, function (item) {

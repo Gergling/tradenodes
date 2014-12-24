@@ -11,9 +11,10 @@ angular.module("application")
 
             containerPartial = 'modules/application/partial/container.html',
             routes = {
-                '/': new Route("overview", "Overview", 'application'),
+                '/': { redirectTo: '/overview/' },
+                '/overview/': new Route("overview", "Overview", 'application'),
                 '/products/': new Route("products", "Products", 'product'),
-                '/trades/': new Route("trades", "Trades", 'trade'),
+                '/nodes/': new Route("nodes", "Nodes", 'node')
             };
 
         angular.forEach(routes, function (obj, route) {

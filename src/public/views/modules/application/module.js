@@ -1,5 +1,10 @@
 angular.module("application", [
     "ngRoute",
 
-    "restangular"
+    "restangular",
+
+    "common",
+
+    "node",
+    "product"
 ]);

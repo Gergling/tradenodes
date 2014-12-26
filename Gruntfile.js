@@ -149,26 +149,7 @@ module.exports = function (grunt) {
                 },
                 files: {
                     'src/public/views/index.html':
-                        'src/templates/html/index.html.tpl'
-                }
-            },
-            build: {
-                options: {
-                    data: {
-                        paths: {
-                            vendor:  'js/vendor.min.js'  + version,
-                            scripts: 'js/scripts.min.js' + version
-                        },
-                        css: {
-                            vendor: 'css/vendor.min.css' + version,
-                            styles: 'css/styles.min.css' + version
-                        },
-                        expand: false
-                    }
-                },
-                files: {
-                    'build/public_html/index.html':
-                        'src/public_html/index.html.tpl'
+                        'src/templates/code/index.html.tpl'
                 }
             }
         },

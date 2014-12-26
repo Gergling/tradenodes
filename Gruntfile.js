@@ -52,6 +52,8 @@ module.exports = function (grunt) {
     paths.specs = paths.specsClient.concat(paths.specsServer);
     grunt.file.write("src/public/views/vendor/bootstrap/css/bootstrap.css.map");
 
+    require("./src/grunt/modules.js")(grunt);
+
     grunt.initConfig({
         bower: {
             install: {

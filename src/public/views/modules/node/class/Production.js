@@ -1,16 +1,22 @@
 angular.module("node").factory("node.class.Production", [
 
-    // Resources
+    "node.class.Order",
 
-    function () {
+    function (Order) {
         "use strict";
 
         return function (product) {
             var labour = [ ];
-            if (!product instanceof Order) {throw new Error("Production needs to be passed an Order."); }
+            if (!product instanceof Order) {throw new Error("Production(product) needs to be passed an Order."); }
 
             this.product = function () {return product; };
-            this.labour = function (order) {labour.push(order); };
+            this.labour = function (order) {
+                if (order) {
+                    if (!order instanceof Order) {throw new Error("Production::labour(order) needs to be passed an Order."); }
+                    labour.push(order);
+                }
+                return labour;
+            };
         };
     }
 ]);

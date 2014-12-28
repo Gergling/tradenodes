@@ -40,6 +40,14 @@
                         </li>
                     </ul>
                 </li>
+                <li data-ng-show="node.analysis().anomalies.length" style="color: lightblue;">
+                    Anomalies:
+                    <ul>
+                        <li data-ng-repeat="anomaly in node.analysis().anomalies">
+                            {{anomaly}}
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </td>
     </tr>

@@ -33,6 +33,8 @@ angular.module("node").factory("node.class.Node", [
                         exports: exports.length,
                         storage: storage.length,
                         show: false,
+                        products: { },
+                        anomalies: [ ],
                         warning: [ ],
                         waste: [ ]
                     },
@@ -53,6 +55,12 @@ angular.module("node").factory("node.class.Node", [
                 // Internal
                 productions.forEach(function (production) {
                     addSurplus(production.product());
+                    if (production.labour().length === 0) {
+                        analysis.anomalies.push([
+                            "No labour costs for product: ",
+                            production.product().product().name()
+                        ].join(""));
+                    }
                 });
                 consumptions.forEach(setSurplus);
 

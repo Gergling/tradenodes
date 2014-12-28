@@ -26,6 +26,16 @@ angular.module("node").service("node.service.list", [
             list.push(supplier);
 
             list.push(dead);
+
+            list.push(function () {
+                var node = new Node("Iron World");
+                node.productions(function () {
+                    var production = new Production(new Order(products.iron, 10));
+                    // Labour costs for Iron.
+                    return production;
+                }());
+                return node;
+            }());
         }(this.list));
     }
 ]);

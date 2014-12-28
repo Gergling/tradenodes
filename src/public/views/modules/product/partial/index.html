@@ -1,0 +1,46 @@
+<h3>Products</h3>
+
+<table class="table table-bordered" data-ng-controller="product.controller.index">
+    <tr>
+        <th></th>
+        <th colspan="5">Nodes</th>
+    </tr>
+    <tr>
+        <th>Product</th>
+        <th>Producing</th>
+        <th>Consuming</th>
+        <th>Importing</th>
+        <th>Exporting</th>
+        <th>Storing</th>
+    </tr>
+    <tr data-ng-repeat-start="product in products">
+        <td>{{product.label()}}</td>
+        <td>{{product.analysis().productions}}</td>
+        <td>{{product.analysis().consumptions}}</td>
+        <td>{{product.analysis().imports}}</td>
+        <td>{{product.analysis().exports}}</td>
+        <td>{{product.analysis().storage}}</td>
+    </tr>
+    <tr data-ng-repeat-end data-ng-show="product.analysis().show">
+        <td colspan="6">
+            <ul>
+                <li data-ng-show="product.analysis().warning.length" style="color: red;">
+                    Warnings:
+                    <ul>
+                        <li data-ng-repeat="warning in product.analysis().warning">
+                            {{warning}}
+                        </li>
+                    </ul>
+                </li>
+                <li data-ng-show="product.analysis().waste.length" style="color: orange;">
+                    Waste:
+                    <ul>
+                        <li data-ng-repeat="waste in product.analysis().waste">
+                            {{waste}}
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</ul>

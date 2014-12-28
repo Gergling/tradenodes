@@ -37,7 +37,7 @@ module.exports = function (grunt) {
             if (valid.indexOf(type) < 0) {
                 throw new Error("Invalid component type: " + type);
             } else if (type === "class") {
-                fileName = name.charAt(0).toUpperCase() + name.slice(1);
+                fileName = name.charAt(0).toUpperCase() + camel(name.slice(1));
                 name = fileName;
                 fnc = "factory";
             }
@@ -68,9 +68,14 @@ module.exports = function (grunt) {
                     },
                     files: (function () {
                         var ret = { };
-                        if (type === "directive") {
+                        switch(type) {
+                        case "directive":
                             ret[file] = 'src/templates/code/grunt-ng-directive.js.tpl';
-                        } else {
+                            break;
+                        case "class":
+                            ret[file] = 'src/templates/code/grunt-ng-class.js.tpl';
+                            break;
+                        default:
                             ret[file] = 'src/templates/code/grunt-ng-component.js.tpl';
                         }
                         return ret;

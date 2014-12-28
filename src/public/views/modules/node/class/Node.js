@@ -57,7 +57,7 @@ angular.module("node").factory("node.class.Node", [
                     addSurplus(production.product());
                     if (production.labour().length === 0) {
                         analysis.anomalies.push([
-                            "No labour costs for product: ",
+                            "No labour costs for production: ",
                             production.product().product().name()
                         ].join(""));
                     }

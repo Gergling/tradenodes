@@ -1,8 +1,8 @@
 angular.module("node").factory("node.class.Node", [
 
-    // Resources
+    "node.class.Production",
 
-    function () {
+    function (Production) {
         "use strict";
 
         return function (label) {

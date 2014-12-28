@@ -15,6 +15,7 @@ angular.module("node").factory("node.class.Node", [
             this.label = function () {return label; };
             this.productions = function (production) {
                 if (production) {
+                    if (!production instanceof Production) {throw new Error("Node::productions(production) must be passed an object of type Production.");}
                     productions.push(production);
                 }
                 return productions;

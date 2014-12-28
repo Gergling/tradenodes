@@ -1,3 +1,3 @@
 angular.module("<%= name %>", [<%=
-    (required.length > 0 ? '"' + required.join('",\n\t"') + '"' : "")
+    (required.length > 0 ? '\n\t"' + required.join('",\n\t"') + '"\n' : "")
 %>]);

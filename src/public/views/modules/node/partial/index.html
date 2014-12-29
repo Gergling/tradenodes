@@ -24,27 +24,11 @@
     <tr data-ng-repeat-end data-ng-show="node.analysis().show">
         <td colspan="6">
             <ul>
-                <li data-ng-show="node.analysis().warning.length" style="color: #f55;">
-                    Warnings:
+                <li data-ng-repeat="message in node.analysis().messages" data-ng-show="message.messages().length" style="color: {{message.colour()}};">
+                    {{message.label()}}:
                     <ul>
-                        <li data-ng-repeat="warning in node.analysis().warning">
-                            {{warning}}
-                        </li>
-                    </ul>
-                </li>
-                <li data-ng-show="node.analysis().waste.length" style="color: orange;">
-                    Waste:
-                    <ul>
-                        <li data-ng-repeat="waste in node.analysis().waste">
-                            {{waste}}
-                        </li>
-                    </ul>
-                </li>
-                <li data-ng-show="node.analysis().anomalies.length" style="color: lightblue;">
-                    Anomalies:
-                    <ul>
-                        <li data-ng-repeat="anomaly in node.analysis().anomalies">
-                            {{anomaly}}
+                        <li data-ng-repeat="item in message.messages()">
+                            {{item}}
                         </li>
                     </ul>
                 </li>

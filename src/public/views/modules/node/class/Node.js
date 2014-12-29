@@ -11,7 +11,7 @@ angular.module("node").factory("node.class.Node", [
             this.label = function () {return label; };
             this.colour = function () {return colour; };
             this.messages = function (value) {
-                if (value) {messages = value; };
+                if (value) {messages = value; }
                 return messages;
             };
         };
@@ -27,14 +27,14 @@ angular.module("node").factory("node.class.Node", [
             this.label = function () {return label; };
             this.productions = function (production) {
                 if (production) {
-                    if (!production instanceof Production) {throw new Error("Node::productions(production) must be passed an object of type Production.");}
+                    if (!production instanceof Production) {throw new Error("Node::productions(production) must be passed an object of type Production."); }
                     productions.push(production);
                 }
                 return productions;
             };
             this.consumptions = function (order) {consumptions.push(order); };
             this.imports = function (order) {imports.push(order); };
-            this.exports = function (exp) {exports.push(exp);};
+            this.exports = function (exp) {exports.push(exp); };
 
             this.analysis = function () {
                 // Get total consumptions

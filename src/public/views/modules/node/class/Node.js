@@ -76,6 +76,7 @@ angular.module("node").factory("node.class.Node", [
                     productions.forEach(function (production) {
                         addSurplus(production.product());
                         if (production.labour().length === 0) {
+                            analysis.show = true;
                             messages.anomalies.push([
                                 "No labour costs for production: ",
                                 production.product().product().name()

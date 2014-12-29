@@ -14,18 +14,16 @@ angular.module("node").service("node.service.list", [
 
         (function (list) {
             var buyer = new Node("Buyer World"),
-                supplier = new Node("Supplier World"),
-                dead = new Node("Dead World"),
-                production = new Production(new Order(products.food, 1));
+                supplier = new Node("Supplier World");
 
             buyer.consumptions(new Order(products.food, 3));
             list.push(buyer);
 
-            supplier.productions(production);
+            supplier.productions(new Production(new Order(products.food, 1)));
             supplier.exports(new Export(new Order(products.food, 1), buyer));
             list.push(supplier);
 
-            list.push(dead);
+            list.push(new Node("Dead World"));
 
             list.push(function () {
                 var node = new Node("Iron World");

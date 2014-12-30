@@ -83,11 +83,21 @@ angular.module("node").factory("node.class.Node", [
                             ].join(""));
                         }
                     });
-                    consumptions.forEach(setSurplus);
+                    consumptions.forEach(function (order) {
+                        var name = order.product().name();
+                        if (surplus[name] < order.quantity()) {
+                            messages.warning.push("Over-consumption: Insufficient production or import of " + name + ". (" + surplus[name] + " available, consuming " + order.quantity() + ")");
+                        }
+                        setSurplus(order);
+                    });
 
                     // External
                     imports.forEach(addSurplus);
                     exports.forEach(function (exp) {
+                        var name = exp.order().product().name();
+                        if (surplus[name] < exp.order().quantity()) {
+                            messages.warning.push("Over-export: Insufficient production or import of " + name + " after consumption. (" + surplus[name] + " available, exporting " + exp.order().quantity() + ")");
+                        }
                         setSurplus(exp.order());
                     });
 

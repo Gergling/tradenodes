@@ -2,16 +2,12 @@
 
 <table class="table table-bordered" data-ng-controller="node.controller.index">
     <tr>
-        <th></th>
-        <th colspan="5">Product Types</th>
-    </tr>
-    <tr>
         <th>Node</th>
-        <th>Productions</th>
-        <th>Consumptions</th>
-        <th>Imports</th>
-        <th>Exports</th>
-        <th>Storage</th>
+        <th>Products</th>
+        <th>Consumed Products</th>
+        <th>Imported</th>
+        <th>Exported</th>
+        <th>Storage Types</th>
     </tr>
     <tr data-ng-repeat-start="node in nodes">
         <td>{{node.label()}}</td>

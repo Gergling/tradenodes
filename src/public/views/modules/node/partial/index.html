@@ -3,19 +3,51 @@
 <table class="table table-bordered" data-ng-controller="node.controller.index">
     <tr>
         <th>Node</th>
-        <th>Products</th>
-        <th>Consumed Products</th>
-        <th>Imported</th>
-        <th>Exported</th>
-        <th>Storage Types</th>
+        <th>Production</th>
+        <th>Consumption</th>
+        <th>Import</th>
+        <th>Export</th>
+        <th>Storage</th>
     </tr>
     <tr data-ng-repeat-start="node in nodes">
-        <td>{{node.label()}}</td>
-        <td>{{node.analysis().productions}}</td>
-        <td>{{node.analysis().consumptions}}</td>
-        <td>{{node.analysis().imports}}</td>
-        <td>{{node.analysis().exports}}</td>
-        <td>{{node.analysis().storage}}</td>
+        <td>{{node.label()}}
+            <span data-ng-click="node.showBreakdown(true)" data-ng-show="node.breakdown()._show">
+                (
+                    <span style="cursor: pointer; color: #0b0;">
+                        <i class="glyphicon glyphicon-plus" data-ng-hide="node.showBreakdown()"></i>
+                        <i class="glyphicon glyphicon-minus" data-ng-show="node.showBreakdown()"></i>
+                    </span>
+                    Products
+                )
+            </span>
+        </td>
+        <td>{{node.analysis().productions}} products</td>
+        <td>{{node.analysis().consumptions}} products</td>
+        <td>{{node.analysis().imports}} products</td>
+        <td>{{node.analysis().exports}} products</td>
+        <td>{{node.analysis().storage}} storage types</td>
+    </tr>
+    <tr data-ng-show="node.showBreakdown()">
+        <td colspan="6">
+            <table class="table table-bordered" style="background-color: transparent;">
+                <tr>
+                    <th>Product</th>
+                    <th>Production</th>
+                    <th>Consumption</th>
+                    <th>Import</th>
+                    <th>Export</th>
+                    <th>Storage</th>
+                </tr>
+                <tr data-ng-repeat="breakdown in node.breakdown()">
+                    <td>{{breakdown.label}}</td>
+                    <td>{{breakdown.production}}</td>
+                    <td>{{breakdown.consumption}}</td>
+                    <td>{{breakdown.import}}</td>
+                    <td>{{breakdown.export}}</td>
+                    <td>{{breakdown.storage}}</td>
+                </tr>
+            </table>
+        </td>
     </tr>
     <tr data-ng-repeat-end data-ng-show="node.analysis().show">
         <td colspan="6">

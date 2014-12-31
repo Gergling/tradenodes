@@ -22,7 +22,16 @@ angular.module("node").factory("node.class.Node", [
                 imports = [ ],
                 exports = [ ],
                 storage = [ ],
-                analysis;
+                analysis,
+                breakdown,
+                show = {
+                    breakdown: {
+                        toggle: function () {
+                            show.breakdown.state = !show.breakdown.state;
+                        },
+                        state: false
+                    }
+                };
 
             this.label = function () {return label; };
             this.productions = function (production) {
@@ -35,6 +44,46 @@ angular.module("node").factory("node.class.Node", [
             this.consumptions = function (order) {consumptions.push(order); };
             this.imports = function (order) {imports.push(order); };
             this.exports = function (exp) {exports.push(exp); };
+            this.showBreakdown = function (toggle) {
+                if (toggle) {
+                    show.breakdown.state = !show.breakdown.state;
+                }
+                if (!breakdown || Object.keys(breakdown).length === 0) {show.breakdown.state = false; }
+                return show.breakdown.state;
+            };
+
+            this.breakdown = function () {
+                var setBreakdown = function (order, type) {
+                    var name = order.product().name(),
+                        quantity = order.quantity();
+
+                    if (!breakdown[name]) {breakdown[name] = { label: order.product().label() }; }
+                    if (!breakdown[name][type]) {breakdown[name][type] = 0; }
+                    breakdown[name][type] += quantity;
+                    breakdown._show = true;
+                };
+
+                if (!breakdown) {
+                    breakdown = { };
+
+                    // Internal
+                    productions.forEach(function (production) {
+                        setBreakdown(production.product(), "production");
+                    });
+                    consumptions.forEach(function (order) {
+                        setBreakdown(order, "consumption");
+                    });
+
+                    // External
+                    imports.forEach(function (order) {
+                        setBreakdown(order, "import");
+                    });
+                    exports.forEach(function (exp) {
+                        setBreakdown(exp.order(), "export");
+                    });
+                }
+                return breakdown;
+            };
 
             this.analysis = function () {
                 // Get total consumptions
